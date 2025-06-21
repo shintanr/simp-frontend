@@ -1,0 +1,51 @@
+export type PenilaianType = {
+  id: number | null;
+  id_user: number;
+  id_praktikum: number;
+  id_kelompok: number;
+  id_shift: number;
+  is_asisten: number;
+  id_modul: number | null;
+  nilai_tp: number;
+  nilai_praktikum: number;
+  nilai_fd: number;
+  nilai_laporan_tugas: number;
+  nilai_responsi: number;
+  nilai_total: number;
+  status?: string;
+  nama_user: string;
+  nim: string;
+  nama_praktikum: string;
+  nama_modul: string | null;
+  nama_shift: string;
+  nama_kelompok: string;
+  id_complaint: string | null;
+  komplain: string | null;
+  status_komplain: string | null;
+};
+
+export type PenilaianPraktikanType = {
+  id: number | null;
+  id_user: number;
+  id_praktikum: number;
+  id_kelompok: number;
+  id_shift: number;
+  is_asisten: number;
+  id_modul: number | null;
+  nilai_tp: number;
+  nilai_praktikum: number;
+  nilai_fd: number;
+  nilai_laporan_tugas: number;
+  nilai_responsi: number;
+  nilai_total: number;
+  nama_user: string;
+  nim: string;
+  nama_praktikum: string;
+  nama_modul: string | null;
+  nama_shift: string;
+  nama_kelompok: string;
+  id_complaint: string | null;
+  komplain: string | null;
+  status_komplain: string | null;
+};
+

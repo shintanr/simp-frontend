@@ -1,0 +1,103 @@
+import React from "react";
+import { FaFilePdf, FaDownload } from "react-icons/fa";
+
+interface Modul3Props {
+  pdfUrl: string | null;
+}
+
+const Modul_3_SDL: React.FC<Modul3Props> = ({ pdfUrl }) => {
+  return (
+    <div className="mt-4 p-4 border rounded-lg bg-gray-50">
+      <h3 className="text-lg font-semibold">Modul 3 BAB IV: Coding with Clocking-Function</h3>
+
+      <h4 className="text-md font-semibold mt-2">Tujuan:</h4>
+      <ul className="list-disc pl-5 text-gray-700">
+        <li>Memahami konsep Clocking Function.</li>
+        <li>Mengimplementasikan Clocking Function pada papan FPGA Nexys A7.</li>
+      </ul>
+
+      <h4 className="text-md font-semibold mt-2">Alat dan Bahan:</h4>
+      <ul className="list-disc pl-5 text-gray-700">
+        <li>Laptop</li>
+        <li>Papan Nexys A7</li>
+        <li>Seven Segment</li>
+        <li>Switch</li>
+      </ul>
+
+      <h4 className="text-md font-semibold mt-2">Dasar Teori:</h4>
+      <ul className="list-disc pl-5 text-gray-700">
+        <li><strong>Clocking:</strong> Sinyal dalam sirkuit digital yang menentukan kecepatan operasi flip-flop.</li>
+        <li><strong>Counter:</strong> Rangkaian logika yang menghitung jumlah pulsa input.</li>
+        <li><strong>FPGA:</strong> Sirkuit terintegrasi yang dapat dikonfigurasi ulang sesuai kebutuhan.</li>
+      </ul>
+
+      <h4 className="text-md font-semibold mt-2">Langkah Kerja:</h4>
+      <ol className="list-decimal pl-5 text-gray-700">
+        <li>Buka Xilinx Vivado dan buat proyek baru.</li>
+        <li>Beri nama proyek <strong>Modul3_KelompokXX</strong> (XX sesuai nomor kelompok).</li>
+        <li>Pilih tipe <strong>RTL Project</strong> dan papan Nexys A7-100T.</li>
+        <li>Buat file Verilog untuk Counter Up.</li>
+        <li>Tambahkan kode untuk Clocking dan Seven Segment.</li>
+        <li>Buat file constraint untuk papan Nexys A7.</li>
+        <li>Generate Bitstream dan program perangkat.</li>
+        <li>Amati perubahan angka pada Seven Segment.</li>
+      </ol>
+
+      <h4 className="text-md font-semibold mt-2">Kode Verilog:</h4>
+      <p className="text-gray-700 font-semibold">Kode Counter Up:</p>
+      <pre className="bg-gray-200 p-2 rounded overflow-x-auto"><code>{`
+module counter(
+  input clock_100Mhz,
+  input reset,
+  output reg [3:0] Anode_Activate,
+  output reg [6:0] LED_out
+);
+  reg [26:0] one_second_counter;
+  wire one_second_enable;
+  reg [15:0] displayed_number;
+
+  always @(posedge clock_100Mhz or posedge reset) begin
+    if (reset == 1)
+      one_second_counter <= 0;
+    else if (one_second_counter >= 99999999)
+      one_second_counter <= 0;
+    else
+      one_second_counter <= one_second_counter + 1;
+  end
+
+  assign one_second_enable = (one_second_counter == 99999999) ? 1 : 0;
+endmodule
+      `}</code></pre>
+
+      <h4 className="text-md font-semibold mt-2">Kesimpulan:</h4>
+      <p className="text-gray-700">
+        Mahasiswa dapat memahami konsep clocking function dan mengimplementasikan counter up
+        pada FPGA Nexys A7 menggunakan Verilog.
+      </p>
+
+      <div className="mt-4 pt-3 border-t border-gray-200">
+        <h4 className="text-md font-semibold flex items-center">
+          <FaFilePdf className="text-red-600 mr-2" />
+          Materi Tambahan:
+        </h4>
+        <p className="text-gray-700 mt-2">Unduh PDF modul ini untuk referensi lebih lanjut:</p>
+
+        {pdfUrl ? (
+          <a
+            href={pdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+          >
+            <FaDownload className="mr-2" />
+            Download Modul 3 (PDF)
+          </a>
+        ) : (
+          <p className="text-gray-500 italic mt-2">PDF tidak tersedia</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Modul_3_SDL;

@@ -69,7 +69,7 @@ export default function TugasPendahuluanAsisten() {
 
   const fetchPraktikum = async (): Promise<void> => {
     try {
-      const res = await fetch("http://localhost:8080/api/praktikum");
+      const res = await fetch("https://simp-backend-production.up.railway.app/api/praktikum");
       const data: ApiResponse<Praktikum[]> = await res.json();
       if (res.ok) setPraktikumList(data.data);
     } catch (error) {
@@ -79,7 +79,7 @@ export default function TugasPendahuluanAsisten() {
 
   const fetchPertemuan = async (praktikumId: string): Promise<void> => {
     try {
-      const res = await fetch(`http://localhost:8080/api/pertemuan/${praktikumId}`);
+      const res = await fetch(`https://simp-backend-production.up.railway.app/api/pertemuan/${praktikumId}`);
       const data: ApiResponse<Pertemuan[]> = await res.json();
       if (res.ok) {
         setPertemuanList(data.data);
@@ -97,7 +97,7 @@ export default function TugasPendahuluanAsisten() {
   const fetchSubmissions = async (): Promise<void> => {
     setLoading(true);
     try {
-      let url = "http://localhost:8080/api/asprak/tugas-pendahuluan/details";
+      let url = "https://simp-backend-production.up.railway.app/api/asprak/tugas-pendahuluan/details";
       if (selectedPraktikum && selectedPertemuan && selectedPertemuan !== "all") {
         url += `?idPraktikum=${selectedPraktikum}&idPertemuan=${selectedPertemuan}`;
       } else if (selectedPraktikum) {

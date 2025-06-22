@@ -46,7 +46,7 @@ export default function TugasPendahuluanPage() {
   useEffect(() => {
     async function fetchPraktikum(): Promise<void> {
       try {
-        const response = await fetch("http://localhost:8080/api/praktikum");
+        const response = await fetch("https://simp-backend-production.up.railway.app/api/praktikum");
         const data: ApiResponse<Praktikum[]> = await response.json();
         if (response.ok && data.data) {
           setPraktikumList(data.data);
@@ -68,7 +68,7 @@ export default function TugasPendahuluanPage() {
       
       setLoading(true);
       try {
-        const response = await fetch(`http://localhost:8080/api/tp/${selectedPraktikum}`);
+        const response = await fetch(`https://simp-backend-production.up.railway.app/api/tp/${selectedPraktikum}`);
         const data: PertemuanTP[] = await response.json();
         
         if (response.ok) {

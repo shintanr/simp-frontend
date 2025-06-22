@@ -25,7 +25,7 @@ export default function Quiz_5({ submodulId, userId }: QuizProps) {
   useEffect(() => {
     async function fetchQuiz() {
       try {
-        const response = await fetch(`http://localhost:8080/api/submodul/quiz-pjk/${submodulId}`);
+        const response = await fetch(`https://simp-backend-production.up.railway.app/api/submodul/quiz-pjk/${submodulId}`);
         const data = await response.json();
         if (data.success) {
           setQuestions(data.data);
@@ -63,7 +63,7 @@ export default function Quiz_5({ submodulId, userId }: QuizProps) {
 
         console.log("Sending data to backend:", payload);
 
-        const response = await fetch("http://localhost:8080/api/submodul/quiz/submit", {
+        const response = await fetch("https://simp-backend-production.up.railway.app/api/submodul/quiz/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),

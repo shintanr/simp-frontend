@@ -93,7 +93,7 @@ function PrakMulmedPage() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch("http://localhost:8080/api/praktikum/modul/6");
+      const response = await fetch("https://simp-backend-production.up.railway.app/api/praktikum/modul/6");
       if (!response.ok) {
         throw new Error(`Server responded with ${response.status}: ${response.statusText}`);
       }
@@ -128,7 +128,7 @@ function PrakMulmedPage() {
   // Fetch submodules for a specific module
   const fetchSubmodules = useCallback(async (moduleId: number) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/praktikum/submodul/prak-mulmed/${moduleId}`);
+      const response = await fetch(`https://simp-backend-production.up.railway.app/api/praktikum/submodul/prak-mulmed/${moduleId}`);
       if (!response.ok) {
         throw new Error(`Server responded with ${response.status}`);
       }

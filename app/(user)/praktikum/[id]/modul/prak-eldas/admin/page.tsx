@@ -155,7 +155,7 @@ const [videoSourceType, setVideoSourceType] = useState<'file' | 'youtube'>('file
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch("http://localhost:8080/admin/get/modul/9");
+      const response = await fetch("https://simp-backend-production.up.railway.app/admin/get/modul/9");
       if (!response.ok) {
         throw new Error(`Server responded with ${response.status}: ${response.statusText}`);
       }
@@ -179,7 +179,7 @@ const [videoSourceType, setVideoSourceType] = useState<'file' | 'youtube'>('file
   // Fetch submodules for a specific module
   const fetchSubmodules = useCallback(async (moduleId: number) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/praktikum/submodul/prak-eldas/${moduleId}`);
+      const response = await fetch(`https://simp-backend-production.up.railway.app/api/praktikum/submodul/prak-eldas/${moduleId}`);
       if (!response.ok) {
         throw new Error(`Server responded with ${response.status}`);
       }
@@ -204,7 +204,7 @@ const [videoSourceType, setVideoSourceType] = useState<'file' | 'youtube'>('file
     }
   
   try {
-    const url = `http://localhost:8080/api/submodul/quiz-eldas/${submoduleId}`;
+    const url = `https://simp-backend-production.up.railway.app/api/submodul/quiz-eldas/${submoduleId}`;
     console.log(`Fetching from URL: ${url}`);
     
     const response = await fetch(url);
@@ -400,11 +400,11 @@ const [videoSourceType, setVideoSourceType] = useState<'file' | 'youtube'>('file
           // 👉 Cocokkan dengan URL endpoint backend
           let url = '';
           if (type === 'video') {
-            url = `http://localhost:8080/server/video_file/${fileName}`;
+            url = `https://simp-backend-production.up.railway.app/server/video_file/${fileName}`;
           } else if (type === 'pdf') {
-            url = `http://localhost:8080/server/pdf_file/${fileName}`;
+            url = `https://simp-backend-production.up.railway.app/server/pdf_file/${fileName}`;
           } else {
-            url = `http://localhost:8080/uploads/${type}/${fileName}`;
+            url = `https://simp-backend-production.up.railway.app/uploads/${type}/${fileName}`;
           }
   
           resolve(url);
@@ -442,7 +442,7 @@ const [videoSourceType, setVideoSourceType] = useState<'file' | 'youtube'>('file
   const handleAddModule = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8080/admin/post/modul", {
+      const response = await fetch("https://simp-backend-production.up.railway.app/admin/post/modul", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -528,7 +528,7 @@ const handleAddSubmodule = async (e: React.FormEvent) => {
       console.log(pair[0], pair[1]);
     }
     
-    const response = await fetch('http://localhost:8080/admin/post/submodul/eldas', {
+    const response = await fetch('https://simp-backend-production.up.railway.app/admin/post/submodul/eldas', {
       method: 'POST',
       body: formDataToSend,
     });
@@ -655,7 +655,7 @@ const handleAddSubmodule = async (e: React.FormEvent) => {
     console.log('Data yang akan dikirim:', JSON.stringify(formattedData, null, 2));
     
     try {
-      const response = await fetch(`http://localhost:8080/admin/post/quiz/eldas/${selectedSubmodule.id_submodul}`, {
+      const response = await fetch(`https://simp-backend-production.up.railway.app/admin/post/quiz/eldas/${selectedSubmodule.id_submodul}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -718,7 +718,7 @@ const handleAddSubmodule = async (e: React.FormEvent) => {
     if (!selectedModule) return;
 
     try {
-      const response = await fetch(`http://localhost:8080/admin/put/modul/${selectedModule.id_modul}`, {
+      const response = await fetch(`https://simp-backend-production.up.railway.app/admin/put/modul/${selectedModule.id_modul}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -769,7 +769,7 @@ const handleAddSubmodule = async (e: React.FormEvent) => {
     }
   
     try {
-      const response = await fetch(`http://localhost:8080/admin/put/submodul/eldas/${selectedSubmodule.id_submodul}`, {
+      const response = await fetch(`https://simp-backend-production.up.railway.app/admin/put/submodul/eldas/${selectedSubmodule.id_submodul}`, {
         method: "PUT",
         body: formDataToSend,
       });
@@ -830,7 +830,7 @@ const handleUpdateQuestion = async (e: React.FormEvent) => {
   };
   
   try {
-    const response = await fetch(`http://localhost:8080/admin/update/quiz/eldas/${quizId}`, {
+    const response = await fetch(`https://simp-backend-production.up.railway.app/admin/update/quiz/eldas/${quizId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -866,7 +866,7 @@ const handleUpdateQuestion = async (e: React.FormEvent) => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8080/admin/delete/modul/${selectedModule.id_modul}`, {
+      const response = await fetch(`https://simp-backend-production.up.railway.app/admin/delete/modul/${selectedModule.id_modul}`, {
         method: "DELETE",
       });
 
@@ -889,7 +889,7 @@ const handleUpdateQuestion = async (e: React.FormEvent) => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8080/admin/delete/submodul/eldas/${selectedSubmodule.id_submodul}`, {
+      const response = await fetch(`https://simp-backend-production.up.railway.app/admin/delete/submodul/eldas/${selectedSubmodule.id_submodul}`, {
         method: "DELETE",
       });
 
@@ -914,7 +914,7 @@ const handleUpdateQuestion = async (e: React.FormEvent) => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8080/admin/delete/quiz/eldas/${selectedQuestion.id_question}`, {
+      const response = await fetch(`https://simp-backend-production.up.railway.app/admin/delete/quiz/eldas/${selectedQuestion.id_question}`, {
         method: "DELETE",
       });
 

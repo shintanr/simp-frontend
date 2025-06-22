@@ -78,7 +78,7 @@ export default function TPEvaluationPage() {
   const handleSubmitScore = async (): Promise<void> => {
     setSubmitLoading(true);
     try {
-      const response = await fetch(`http://localhost:8080/api/attempts/${id_attempts}/submit-score`, {
+      const response = await fetch(`https://simp-backend-production.up.railway.app/api/attempts/${id_attempts}/submit-score`, {
         method: "POST",
       });
       const result: SubmitScoreResponse = await response.json();
@@ -99,7 +99,7 @@ export default function TPEvaluationPage() {
   // Function untuk fetch full_name berdasarkan id_attempts
   const fetchUserFullName = async (idAttempts: string | string[]): Promise<void> => {
     try {
-      const response = await fetch(`http://localhost:8080/api/attempts/${idAttempts}/user-name`);
+      const response = await fetch(`https://simp-backend-production.up.railway.app/api/attempts/${idAttempts}/user-name`);
       const data: ApiResponse<UserNameResponse> = await response.json();
       
       if (data.success && data.data?.full_name) {
@@ -117,7 +117,7 @@ export default function TPEvaluationPage() {
   // Function untuk fetch informasi praktikum dan pertemuan
   const fetchPraktikumPertemuan = async (idAttempts: string | string[]): Promise<void> => {
     try {
-      const response = await fetch(`http://localhost:8080/api/attempts/${idAttempts}/praktikum-pertemuan`);
+      const response = await fetch(`https://simp-backend-production.up.railway.app/api/attempts/${idAttempts}/praktikum-pertemuan`);
       
       if (!response.ok) {
         console.error('HTTP Error fetching praktikum pertemuan:', response.status, response.statusText);
@@ -155,7 +155,7 @@ export default function TPEvaluationPage() {
   // Function untuk fetch predicted score dari database
   const fetchPredictedScore = async (idAttemptsDetails: number): Promise<number | null> => {
     try {
-      const response = await fetch(`http://localhost:8080/api/predicted-ml/${idAttemptsDetails}`);
+      const response = await fetch(`https://simp-backend-production.up.railway.app/api/predicted-ml/${idAttemptsDetails}`);
       
       if (response.ok) {
         const data: { predicted_score: number } = await response.json();
@@ -186,7 +186,7 @@ export default function TPEvaluationPage() {
         await fetchPraktikumPertemuan(id_attempts);
         
         // Fetch data soal dan jawaban berdasarkan id_attempts
-        const response = await fetch(`http://localhost:8080/api/tp-attempts/${id_attempts}`);
+        const response = await fetch(`https://simp-backend-production.up.railway.app/api/tp-attempts/${id_attempts}`);
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -252,7 +252,7 @@ export default function TPEvaluationPage() {
       console.log('=== FRONTEND PREDICT DEBUG ===');
       console.log('Predicting for ID:', idAttemptsDetails);
       
-      const response = await fetch("http://localhost:8080/predict-score", {
+      const response = await fetch("https://simp-backend-production.up.railway.app/predict-score", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -306,7 +306,7 @@ export default function TPEvaluationPage() {
     setConfirmationLoading(prev => ({ ...prev, [idAttemptsDetails]: true }));
     
     try {
-      const response = await fetch("http://localhost:8080/api/tp-attempts/confirm-score", {
+      const response = await fetch("https://simp-backend-production.up.railway.app/api/tp-attempts/confirm-score", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

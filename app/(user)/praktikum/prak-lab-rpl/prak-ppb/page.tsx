@@ -7,7 +7,7 @@ function PrakPPBPage() {
   const [modules, setModules] = useState<string[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/praktikum/prak-ppb")
+    fetch("https://simp-backend-production.up.railway.app/api/praktikum/prak-ppb")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

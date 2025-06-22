@@ -81,7 +81,7 @@ export default function TugasPendahuluanDetailPage() {
   useEffect(() => {
     async function fetchPraktikumInfo(): Promise<void> {
       try {
-        const response = await fetch(`http://localhost:8080/api/praktikum/`);
+        const response = await fetch(`https://simp-backend-production.up.railway.app/api/praktikum/`);
         const data: ApiResponse<PraktikumInfo> = await response.json();
         if (response.ok && data.data) {
           setPraktikumInfo(data.data);
@@ -96,7 +96,7 @@ export default function TugasPendahuluanDetailPage() {
     async function fetchSoalTP(): Promise<void> {
       setLoading(true);
       try {
-        const response = await fetch(`http://localhost:8080/api/tp/${praktikumId}/${pertemuanId}`);
+        const response = await fetch(`https://simp-backend-production.up.railway.app/api/tp/${praktikumId}/${pertemuanId}`);
         const data: Soal[] = await response.json();
         
         if (response.ok) {
@@ -169,7 +169,7 @@ export default function TugasPendahuluanDetailPage() {
       console.log("Mengirim data:", payload);
 
       // Submit to API
-      const response = await fetch("http://localhost:8080/api/submit-tp", {
+      const response = await fetch("https://simp-backend-production.up.railway.app/api/submit-tp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
